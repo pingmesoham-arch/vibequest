@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cosmos Desktop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Hanken+Grotesk:wght@400;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#3a3939",
+                        "on-secondary": "#313030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#1a1c1c",
+                        "grain-texture": "rgba(255, 255, 255, 0.03)",
+                        "surface-tint": "#c6c6c7",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-primary-fixed-variant": "#454747",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-surface": "#e5e2e1",
+                        "secondary-container": "#474746",
+                        "tertiary-fixed": "#e2e2e2",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary": "#c8c6c5",
+                        "surface-variant": "#353434",
+                        "error-container": "#93000a",
+                        "on-background": "#e5e2e1",
+                        "on-tertiary": "#2f3131",
+                        "surface-container-low": "#1c1b1b",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "surface-container": "#201f1f",
+                        "tertiary": "#ffffff",
+                        "outline-variant": "#444748",
+                        "on-surface-variant": "#c4c7c8",
+                        "deep-black": "#000000",
+                        "on-secondary-container": "#b7b5b4",
+                        "paper-gray": "#E5E5E5",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-highest": "#353434",
+                        "surface-dim": "#141313",
+                        "ink-gray": "#121212",
+                        "primary": "#ffffff",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-high": "#2a2a2a",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#8e9192",
+                        "surface": "#141313",
+                        "on-primary": "#2f3131",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "background": "#141313",
+                        "on-tertiary-container": "#636565",
+                        "stark-white": "#FFFFFF",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "on-primary-container": "#636565",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-container": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "primary-container": "#e2e2e2",
+                        "primary-fixed": "#e2e2e2",
+                        "inverse-primary": "#5d5f5f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "container-margin": "4rem",
+                        "component-padding": "1rem",
+                        "section-gap": "8rem"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Anton"],
+                        "headline-xl": ["Anton"],
+                        "headline-lg-mobile": ["Anton"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Anton"],
+                        "label-bold": ["Space Grotesk"],
+                        "label-mono": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["64px", { "lineHeight": "60px", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "headline-xl": ["120px", { "lineHeight": "100px", "letterSpacing": "-0.04em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["48px", { "lineHeight": "44px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "label-bold": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "label-mono": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.deep-black');
+            color: theme('colors.stark-white');
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.8;
+        }
+
+        .vinyl-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vh;
+            height: 80vh;
+            border-radius: 50%;
+            background-color: theme('colors.stark-white');
+            z-index: 0;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+        
+        .text-outline {
+            -webkit-text-stroke: 1px theme('colors.stark-white');
+            color: transparent;
+        }
+
+        /* Outline Window Style */
+        .window-panel {
+            border: 1px solid theme('colors.stark-white');
+            background-color: theme('colors.deep-black');
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="font-body-lg antialiased min-h-screen flex flex-col relative selection:bg-stark-white selection:text-deep-black">
+<div class="grain-overlay"></div>
+<!-- Background Motif -->
+<div class="vinyl-circle hidden md:block"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vh] h-[90vh] border border-stark-white/20 rounded-full z-0 pointer-events-none hidden md:block"></div>
+<!-- TopNavBar -->
+<nav class="bg-deep-black dark:bg-deep-black text-stark-white dark:text-stark-white docked full-width top-0 border-b border-stark-white flat no shadows flex justify-between items-center w-full px-gutter h-12 z-50">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md tracking-tighter text-stark-white leading-none">COSMOS OS</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4 font-label-mono text-label-mono text-on-surface-variant">
+<span class="hover:bg-surface-bright hover:text-stark-white px-2 py-1 transition-colors cursor-default">CPU: 12%</span>
+<span class="hover:bg-surface-bright hover:text-stark-white px-2 py-1 transition-colors cursor-default">RAM: 8GB</span>
+<span class="hover:bg-surface-bright hover:text-stark-white px-2 py-1 transition-colors cursor-default text-stark-white font-bold">12:45 PM</span>
+</div>
+<div class="flex gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined hover:text-stark-white cursor-pointer transition-colors" data-icon="memory">memory</span>
+<span class="material-symbols-outlined hover:text-stark-white cursor-pointer transition-colors" data-icon="settings_ethernet">settings_ethernet</span>
+<span class="material-symbols-outlined hover:text-stark-white cursor-pointer transition-colors" data-icon="schedule">schedule</span>
+</div>
+</div>
+</nav>
+<div class="flex flex-1 relative z-10 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-deep-black dark:bg-deep-black text-stark-white dark:text-stark-white docked left-0 h-full w-64 border-r border-stark-white flat no shadows fixed left-0 top-12 bottom-0 z-40 flex flex-col hidden md:flex">
+<div class="p-gutter border-b border-stark-white/20">
+<div class="w-12 h-12 border border-stark-white rounded-full flex items-center justify-center mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stark, minimalist abstract geometric logo in pure black and white, featuring sharp intersecting lines, high contrast editorial style, solid black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvazWAfVl6wfGed6AOZmRiOfeSE9JtfuWRYcnPi_y0w4KpM-cyme3rLwtG6ilUoUptvmr4fzxQH8j9CmRgpj28W8ZPTCauV_tboSc4q8u6yVwMBnaCdy032LRg9O8qppvzrlxpwzJGA_7QlR31SadwVWipJqm-HsZHmXS4YwYJ2Ieqv1d78VKr4894WIl3X1gVTDsGZznRiyI1U1uuveYQKoZVQV51oo0Pz1yINrJsCQpX1G0utUevpg"/>
+</div>
+<h2 class="font-headline-md text-headline-md text-stark-white leading-none mb-1">LAUNCHER</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant">v2.0.4</p>
+</div>
+<div class="flex-1 overflow-y-auto py-4">
+<nav class="flex flex-col">
+<a class="bg-stark-white text-deep-black font-bold flex items-center gap-4 p-4 hover:invert transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder" data-weight="fill" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-label-bold text-label-bold uppercase">Files</span>
+</a>
+<a class="text-stark-white flex items-center gap-4 p-4 hover:bg-surface-variant hover:invert transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span class="font-label-bold text-label-bold uppercase">Terminal</span>
+</a>
+<a class="text-stark-white flex items-center gap-4 p-4 hover:bg-surface-variant hover:invert transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-bold text-label-bold uppercase">Settings</span>
+</a>
+<a class="text-stark-white flex items-center gap-4 p-4 hover:bg-surface-variant hover:invert transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<span class="font-label-bold text-label-bold uppercase">About</span>
+</a>
+</nav>
+</div>
+<div class="p-gutter border-t border-stark-white/20">
+<div class="flex flex-col gap-2 mb-6">
+<a class="text-on-surface-variant flex items-center gap-3 py-2 hover:text-stark-white transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+<span class="font-label-mono text-label-mono">Docs</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-3 py-2 hover:text-stark-white transition-colors" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+<span class="font-label-mono text-label-mono">Support</span>
+</a>
+</div>
+<button class="w-full border border-stark-white text-stark-white py-3 font-label-bold text-label-bold hover:bg-stark-white hover:text-deep-black transition-colors uppercase tracking-widest">
+                    SHUTDOWN
+                </button>
+</div>
+</aside>
+<!-- Main Desktop Area -->
+<main class="flex-1 ml-0 md:ml-64 p-container-margin relative">
+<!-- Large Background Typography -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 w-full text-center">
+<h1 class="font-headline-xl text-headline-xl text-outline opacity-20 uppercase">SYSTEM<br/>READY</h1>
+</div>
+<!-- Example Window: Files -->
+<div class="window-panel w-full max-w-3xl mx-auto mt-12 flex flex-col relative z-20 shadow-2xl">
+<!-- Window Header -->
+<div class="border-b border-stark-white flex items-center justify-between px-4 py-3 bg-stark-white text-deep-black">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lg" data-icon="folder" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-label-bold text-label-bold uppercase tracking-widest">Files / Root</span>
+</div>
+<div class="flex gap-2">
+<button class="w-4 h-4 border border-deep-black hover:bg-deep-black transition-colors"></button>
+<button class="w-4 h-4 border border-deep-black hover:bg-deep-black transition-colors flex items-center justify-center">
+<span class="block w-2 h-[1px] bg-deep-black"></span>
+</button>
+<button class="w-4 h-4 border border-deep-black hover:bg-deep-black hover:text-stark-white transition-colors flex items-center justify-center text-[10px] font-bold">X</button>
+</div>
+</div>
+<!-- Window Content -->
+<div class="bg-stark-white text-deep-black p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- File Item -->
+<div class="flex flex-col items-center gap-3 p-4 border border-transparent hover:border-deep-black cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" data-icon="folder">folder</span>
+<span class="font-label-mono text-label-mono">Documents</span>
+</div>
+<!-- File Item -->
+<div class="flex flex-col items-center gap-3 p-4 border border-transparent hover:border-deep-black cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" data-icon="folder">folder</span>
+<span class="font-label-mono text-label-mono">Projects</span>
+</div>
+<!-- File Item -->
+<div class="flex flex-col items-center gap-3 p-4 border border-transparent hover:border-deep-black cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" data-icon="image">image</span>
+<span class="font-label-mono text-label-mono">Assets</span>
+</div>
+<!-- File Item -->
+<div class="flex flex-col items-center gap-3 p-4 border border-transparent hover:border-deep-black cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" data-icon="description">description</span>
+<span class="font-label-mono text-label-mono">readme.md</span>
+</div>
+<!-- File Item -->
+<div class="flex flex-col items-center gap-3 p-4 border border-transparent hover:border-deep-black cursor-pointer transition-colors group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform" data-icon="audiotrack">audiotrack</span>
+<span class="font-label-mono text-label-mono">audio.wav</span>
+</div>
+</div>
+<!-- Window Footer -->
+<div class="border-t border-deep-black px-4 py-2 bg-stark-white text-deep-black flex justify-between">
+<span class="font-label-mono text-label-mono">5 items</span>
+<span class="font-label-mono text-label-mono">1.2 GB available</span>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-deep-black dark:bg-deep-black text-stark-white dark:text-stark-white docked bottom-0 w-auto mx-auto mb-4 border border-stark-white flat no shadows fixed bottom-0 left-1/2 -translate-x-1/2 z-50 flex items-center overflow-hidden mb-8 md:hidden">
+<a class="text-stark-white p-3 border-r border-stark-white last:border-r-0 hover:bg-stark-white hover:text-deep-black flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="explore">explore</span>
+<span class="font-label-mono text-label-mono hidden group-hover:block">Finder</span>
+</a>
+<a class="bg-stark-white text-deep-black p-3 flex flex-col items-center gap-1 scale-110 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="folder" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-label-mono text-label-mono">Files</span>
+</a>
+<a class="text-stark-white p-3 border-r border-stark-white last:border-r-0 hover:bg-stark-white hover:text-deep-black flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="tune">tune</span>
+<span class="font-label-mono text-label-mono hidden group-hover:block">Config</span>
+</a>
+<a class="text-stark-white p-3 border-r border-stark-white last:border-r-0 hover:bg-stark-white hover:text-deep-black flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="grid_view">grid_view</span>
+<span class="font-label-mono text-label-mono hidden group-hover:block">System</span>
+</a>
+<a class="text-stark-white p-3 border-r border-stark-white last:border-r-0 hover:bg-stark-white hover:text-deep-black flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="analytics">analytics</span>
+<span class="font-label-mono text-label-mono hidden group-hover:block">Activity</span>
+</a>
+</nav>
+</body></html>
