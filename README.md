@@ -45,6 +45,3 @@ The goal was to explore how far a functional desktop environment could be develo
 
 Built as part of a college Vibe Coding / AI workshop.
 
-## 📄 License
-
-Add your chosen license here.
