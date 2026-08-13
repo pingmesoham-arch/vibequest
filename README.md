@@ -2,7 +2,7 @@
 
 An OS-inspired desktop environment built during a college Vibe Coding / AI workshop.
 
-![Cosmos OS](./screenshot.png)
+![Cosmos OS](https://vibequest-weld.vercel.app/)
 
 ## 🚀 About
 
